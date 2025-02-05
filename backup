@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+
+
+unsigned int entreeIp()
+{
+    
+    char classe;
+
+
+
+    //Classe d'IP
+    if (ip1 < 128)
+    {
+        classe = 'A';
+    }
+    else if (ip1 >= 128 && ip1 < 192)
+    {
+        classe = 'B';
+    }
+    else if (ip1 >= 192 && ip1 < 224)
+    {
+        classe = 'C';
+    }
+    else if (ip1 >= 224 && ip1 < 240)
+    {
+        classe = 'D';
+    }
+    else
+    {
+        classe = 'E';
+    }
+
+    return ip= (ip1<<24)|(ip2<<16)|(ip3<<8)|(ip4);
+}
+
+bool verificationMasque(unsigned int masque1, unsigned int masque2, unsigned int masque3, unsigned int masque4, unsigned int masque)
+{
+    
+
+
+
+
+
+
+    
+}
+
+unsigned int entreeMasque(unsigned int ip)
+{
+    //ip1 les classes
+
+
+    unsigned int masque1 = -1, masque2 = -1, masque3 = -1, masque4 = -1;
+    unsigned int masque;
+
+    printf("Saisir votre masque de sous-réseau :\n");
+    scanf("%u.%u.%u.%u", &masque1, &masque2, &masque3, &masque4);
+    
+    masque= (masque1<<24)|(masque2<<16)|(masque3<<8)|(masque4);
+
+    if (verificationMasque(masque1, masque2, masque3, masque4, masque))
+    {
+        printf("Le masque : %d.%d.%d.%d \nEst valide\n", masque1, masque2, masque3, masque4);
+    }
+    else
+    {
+        printf("Le masque : %d.%d.%d.%d \nN'est pas valide\n", masque1, masque2, masque3, masque4);
+    }
+
+    return masque;
+}
+
+int main()
+{
+    unsigned int ip;
+    ip = entreeIp();
+
+    unsigned int masque;
+    masque = entreeMasque(ip);
+
+    return 0;
+}
