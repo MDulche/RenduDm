@@ -170,7 +170,7 @@ Saisie et affichage d'un masque de sous-réseau si valide.
         printf("Erreur saisie incorrecte");
 
     }
-    
+
     //Retour a la ligne
     printf("\n");
 
@@ -180,7 +180,7 @@ Saisie et affichage d'un masque de sous-réseau si valide.
 
 //Partie 3
 
-void ipReseau(unsigned int ip, unsigned int masque)
+void adresseReseau(unsigned int ip, unsigned int masque)
 {
     //Initialisation des variables des Octets de l'Ip réseau
     unsigned int octetReseau1 = 0, octetReseau2 = 0, octetReseau3 = 0, octetReseau4 = 0;
@@ -224,5 +224,54 @@ void ipReseau(unsigned int ip, unsigned int masque)
         }
 
     printf("Adresse réseau: %u.%u.%u.%u\n", octetReseau1, octetReseau2, octetReseau3, octetReseau4);
+
+}
+
+// partie 4
+
+void adresseBroadcast(unsigned int ip, unsigned int masque)
+{
+    //Initialisation des variables des Octets de l'Ip réseau
+    unsigned int octetBroadcast1 = 0, octetBroadcast2 = 0, octetBroadcast3 = 0, octetBroadcast4 = 0;
+    int octetIp, octetMasque;
+
+    for (int i = 24; i >= 0; i -= 8)
+        {
+            octetIp = (ip >> i) & 255;
+            octetMasque = (masque >> i) & 255;
+
+            switch (i)
+            {
+
+            case 24:
+
+                octetBroadcast1 = octetIp | octetMasque;
+
+                break;
+            
+            case 16:
+                
+                octetBroadcast2 = octetIp | octetMasque;
+
+                break;
+
+            case 8:
+
+                octetBroadcast3 = octetIp | octetMasque;
+
+                break;
+
+            case 0:
+                
+                octetBroadcast4 = octetIp | octetMasque;                
+
+                break;
+
+            default:
+                break;
+            }
+        }
+
+    printf("Adresse Broadcast: %u.%u.%u.%u\n", octetBroadcast1, octetBroadcast2, octetBroadcast3, octetBroadcast4);
 
 }

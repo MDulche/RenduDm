@@ -6,6 +6,6 @@ int main()
 {
     unsigned int ip = entreeIp();
     unsigned int masque = entreeMasque();
-    adresseReseau(ip, masque);
+    adresseBroadcast(ip, masque);
     return 0;
 }

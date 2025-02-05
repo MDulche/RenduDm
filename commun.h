@@ -6,4 +6,6 @@ unsigned int entreeIp();
 bool verifMasque(unsigned int octetMasque1, unsigned int octetMasque2, unsigned int octetMasque3, unsigned int octetMasque4, unsigned int masque);
 unsigned int entreeMasque();
 
-void ipReseau(unsigned int ip, unsigned int masque);
+void adresseReseau(unsigned int ip, unsigned int masque);
+
+void adresseBroadcast(unsigned int ip, unsigned int masque);
