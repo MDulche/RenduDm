@@ -31,7 +31,7 @@ return true si l'adresse IP est valide, false sinon.
     }
 }
 
-void entreeIp()
+unsigned int entreeIp()
 {
 
 /*
@@ -61,7 +61,6 @@ Saisie et affichage d'une adresse IP en 32 bits si elle est valide.
             printf("%d", bit);
             bit_precedent = bit;
         }
-
     }
     else
     {
@@ -69,6 +68,11 @@ Saisie et affichage d'une adresse IP en 32 bits si elle est valide.
         printf("Erreur saisie incorrecte\n");
 
     }
+    
+    //Retour a la ligne
+    printf("\n");
+    
+    return ip;
 }
 
 
@@ -128,7 +132,7 @@ return true si le masque est valide, false sinon.
     }
 }
 
-void entreeMasque()
+unsigned int entreeMasque()
 {
 
 /*
@@ -163,8 +167,62 @@ Saisie et affichage d'un masque de sous-réseau si valide.
     else
     {
         
-        printf("Erreur saisie incorrecte\n");
+        printf("Erreur saisie incorrecte");
 
     }
+    
+    //Retour a la ligne
+    printf("\n");
+
+    return masque;
 }
 
+
+//Partie 3
+
+void ipReseau(unsigned int ip, unsigned int masque)
+{
+    //Initialisation des variables des Octets de l'Ip réseau
+    unsigned int octetReseau1 = 0, octetReseau2 = 0, octetReseau3 = 0, octetReseau4 = 0;
+    int octetIp, octetMasque;
+
+    for (int i = 24; i >= 0; i -= 8)
+        {
+            octetIp = (ip >> i) & 255;
+            octetMasque = (masque >> i) & 255;
+
+            switch (i)
+            {
+
+            case 24:
+
+                octetReseau1 = octetIp & octetMasque;
+
+                break;
+            
+            case 16:
+                
+                octetReseau2 = octetIp & octetMasque;
+
+                break;
+
+            case 8:
+
+                octetReseau3 = octetIp & octetMasque;
+
+                break;
+
+            case 0:
+                
+                octetReseau4 = octetIp & octetMasque;                
+
+                break;
+
+            default:
+                break;
+            }
+        }
+
+    printf("Adresse réseau: %u.%u.%u.%u\n", octetReseau1, octetReseau2, octetReseau3, octetReseau4);
+
+}

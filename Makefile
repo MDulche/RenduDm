@@ -29,6 +29,12 @@ test2:
 partie3: partie3.c commun.c commun.h
 	gcc -o partie3 partie3.c commun.c
 
+test3:
+	cat test31.txt | ./partie3
+	cat test32.txt | ./partie3
+	cat test33.txt | ./partie3
+
+
 partie4: partie4.c commun.c commun.h
 	gcc -o partie4 partie4.c commun.c
 

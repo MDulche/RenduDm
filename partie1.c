@@ -5,7 +5,7 @@
 
 int main()
 {
-    entreeIp();
+    unsigned int ip = entreeIp();
 
     return 0;
 }
