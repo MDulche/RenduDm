@@ -48,6 +48,12 @@ test4:
 partie5: partie5.c commun.c commun.h
 	gcc -o partie5 partie5.c commun.c
 
+test5:
+	cat test51.txt | ./partie5
+	cat test52.txt | ./partie5
+	cat test53.txt | ./partie5
+	cat test54.txt | ./partie5
+
 partie6: partie6.c commun.c commun.h
 	gcc -o partie6 partie6.c commun.c
 

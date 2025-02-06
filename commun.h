@@ -9,3 +9,5 @@ unsigned int entreeMasque();
 void adresseReseau(unsigned int ip, unsigned int masque);
 
 void adresseBroadcast(unsigned int ip, unsigned int masque);
+
+void CIDR(unsigned int masque);

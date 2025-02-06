@@ -234,6 +234,7 @@ void adresseReseau(unsigned int ip, unsigned int masque)
 
 }
 
+
 // partie 4
 
 void adresseBroadcast(unsigned int ip, unsigned int masque)
@@ -281,4 +282,24 @@ void adresseBroadcast(unsigned int ip, unsigned int masque)
 
     printf("Adresse Broadcast: %u.%u.%u.%u\n", octetBroadcast1, octetBroadcast2, octetBroadcast3, octetBroadcast4);
 
+}
+
+
+
+// partie 5
+void CIDR(unsigned int masque)
+{
+    //Initialisation des variables de vérification
+    int compteur = 0, bit;
+
+    for (int i = 31; i >= 0; i--)
+    {
+        bit = (masque >> i) & 1;
+        if (bit == 1)
+        {
+            compteur++;
+        }
+    }
+
+    printf("CIDR: /%d\n", compteur);
 }
