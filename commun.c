@@ -208,13 +208,13 @@ void adresseReseau(unsigned int ip, unsigned int masque)
 
             case 8:
 
-                octetReseau3 = octetIp & octetMasque;
+                octetReseau3 = octetIp & ~octetMasque;
 
                 break;
 
             case 0:
                 
-                octetReseau4 = octetIp & octetMasque;                
+                octetReseau4 = octetIp & ~octetMasque;                
 
                 break;
 
@@ -232,38 +232,38 @@ void adresseReseau(unsigned int ip, unsigned int masque)
 void adresseBroadcast(unsigned int ip, unsigned int masque)
 {
     //Initialisation des variables des Octets de l'Ip réseau
-    unsigned int octetBroadcast1 = 0, octetBroadcast2 = 0, octetBroadcast3 = 0, octetBroadcast4 = 0;
-    int octetIp, octetMasque;
+    unsigned int octetBroadcast1 = 0, octetBroadcast2 = 0, octetBroadcast3 = 0, octetBroadcast4 = 0, octetBroadcast, broadcast;
+   
+    broadcast = ip | ~masque;
 
     for (int i = 24; i >= 0; i -= 8)
         {
-            octetIp = (ip >> i) & 255;
-            octetMasque = (masque >> i) & 255;
+            octetBroadcast = (broadcast >> i) & 255;
 
             switch (i)
             {
 
             case 24:
 
-                octetBroadcast1 = octetIp | octetMasque;
+                octetBroadcast1 = octetBroadcast;
 
                 break;
             
             case 16:
                 
-                octetBroadcast2 = octetIp | octetMasque;
+                octetBroadcast2 = octetBroadcast;
 
                 break;
 
             case 8:
 
-                octetBroadcast3 = octetIp | octetMasque;
+                octetBroadcast3 = octetBroadcast;
 
                 break;
 
             case 0:
                 
-                octetBroadcast4 = octetIp | octetMasque;                
+                octetBroadcast4 = octetBroadcast;                
 
                 break;
 
