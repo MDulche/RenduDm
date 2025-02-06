@@ -57,6 +57,10 @@ test5:
 partie6: partie6.c commun.c commun.h
 	gcc -o partie6 partie6.c commun.c
 
+test6:
+	cat test61.txt | ./partie6
+	cat test62.txt | ./partie6
+
 clean:
 	rm -f partie1 partie2 partie3 partie4 partie5 partie6
 
