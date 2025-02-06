@@ -2,6 +2,23 @@
 #include <stdbool.h>
 #include "commun.h"
 
+void affichage32bit(unsigned int nombre)
+{
+    //Initialisation des variables de l'affichage
+    int bit, bit_precedent = 1;
+
+    //Affichage en binaire
+    for (int i = 31; i >= 0; i--)
+    {
+        bit = (nombre >> i) & 1;
+        printf("%d", bit);
+        bit_precedent = bit;
+    }
+
+    //Retour a la ligne
+    printf("\n");
+}
+
 // partie 1
 
 
@@ -55,12 +72,7 @@ Saisie et affichage d'une adresse IP en 32 bits si elle est valide.
         printf("adresse IP (32 bits): ");
 
         //Affichage en binaire
-        for (int i = 31; i >= 0; i--)
-        {
-            bit = (ip >> i) & 1;
-            printf("%d", bit);
-            bit_precedent = bit;
-        }
+        affichage32bit(ip);
     }
     else
     {
@@ -157,12 +169,7 @@ Saisie et affichage d'un masque de sous-réseau si valide.
         printf("masque sous-réseau (32 bits): ");
 
         //Affichage en binaire
-        for (int i = 31; i >= 0; i--)
-        {
-            bit = (masque >> i) & 1;
-            printf("%d", bit);
-            bit_precedent = bit;
-        }
+        affichage32bit(masque);
     }
     else
     {
@@ -183,38 +190,38 @@ Saisie et affichage d'un masque de sous-réseau si valide.
 void adresseReseau(unsigned int ip, unsigned int masque)
 {
     //Initialisation des variables des Octets de l'Ip réseau
-    unsigned int octetReseau1 = 0, octetReseau2 = 0, octetReseau3 = 0, octetReseau4 = 0;
-    int octetIp, octetMasque;
+    unsigned int octetReseau1 = 0, octetReseau2 = 0, octetReseau3 = 0, octetReseau4 = 0, octetReseau, reseau;
+
+    reseau = ip & masque;
 
     for (int i = 24; i >= 0; i -= 8)
         {
-            octetIp = (ip >> i) & 255;
-            octetMasque = (masque >> i) & 255;
+            octetReseau = (reseau >> i) & 255;
 
             switch (i)
             {
 
             case 24:
 
-                octetReseau1 = octetIp & octetMasque;
+                octetReseau1 = octetReseau;
 
                 break;
             
             case 16:
                 
-                octetReseau2 = octetIp & octetMasque;
+                octetReseau2 = octetReseau;
 
                 break;
 
             case 8:
 
-                octetReseau3 = octetIp & ~octetMasque;
+                octetReseau3 = octetReseau;
 
                 break;
 
             case 0:
                 
-                octetReseau4 = octetIp & ~octetMasque;                
+                octetReseau4 = octetReseau;                
 
                 break;
 
